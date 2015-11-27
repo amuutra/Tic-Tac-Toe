@@ -1,11 +1,14 @@
 package tictac;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class TicTacPanel extends JPanel implements MouseListener {
@@ -16,6 +19,7 @@ public class TicTacPanel extends JPanel implements MouseListener {
 		gameModel = model;
 		this.addMouseListener(this);
 	}
+	
 	
 	private Dimension getSquareCoords(int square) {
 		

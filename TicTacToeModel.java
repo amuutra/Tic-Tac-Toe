@@ -3,16 +3,13 @@ package tictac;
 public class TicTacToeModel {
 
 	private int[] gameGrid;
+	private final int X_PLAYER = 1;
+	private final int O_PLAYER = 2;
 	
 	private boolean X_TURN = false;
 	private boolean O_TURN = false;
 	
-	private final int X_PLAYER = 1;
-	private final int O_PLAYER = 2;
-	
-	private int winningPlayer;
 	private boolean gameEnded = false;
-	
 	
 	public TicTacToeModel() {	
 		gameGrid = new int[9];	
@@ -43,7 +40,6 @@ public class TicTacToeModel {
 			(gameGrid[2] == X_PLAYER && gameGrid[4] == X_PLAYER &&  gameGrid[6] == X_PLAYER)) 
 		{
 			gameEnded = true;
-			winningPlayer = X_PLAYER;
 			return true;
 			
 		} else if ((gameGrid[0] == O_PLAYER && gameGrid[1] == O_PLAYER &&  gameGrid[2] == O_PLAYER) ||
@@ -56,20 +52,19 @@ public class TicTacToeModel {
 				(gameGrid[2] == O_PLAYER && gameGrid[4] == O_PLAYER &&  gameGrid[6] == O_PLAYER)) {
 				
 			gameEnded = true;
-			winningPlayer = O_PLAYER;
 			return true;
 			
 		} else {
 			return false;
 		}
-		
-
-		
+			
 	}
 	
 	public void placeShape(int square) {
 		
 		if(!gameEnded) {
+			
+			if(gameGrid[square-1] == 0) {
 			
 			gameGrid[square - 1] = getCurrentPlayer();	
 			
@@ -79,12 +74,24 @@ public class TicTacToeModel {
 				nextTurn();		
 			}
 			
+			}
+			
 		}	
 				
 	}
 	
 	public int getSquare(int square) {
 		return gameGrid[square - 1];
+	}
+	
+	public void resetGame() {
+		
+		for(int i = 0; i < 9; i++) {
+			gameGrid[i] = 0;
+		}
+		
+		gameEnded = false;
+		
 	}
 	
 	private int getCurrentPlayer() {

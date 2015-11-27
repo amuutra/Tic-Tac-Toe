@@ -1,13 +1,19 @@
 package tictac;
 
+import java.awt.BorderLayout;
+
 import javax.swing.JFrame;
 
 public class TicTacToe {
 
 	public TicTacToe(JFrame mainFrame) {
 		TicTacToeModel ticTac = new TicTacToeModel();
+		
 		TicTacPanel panel = new TicTacPanel(ticTac);
+		BonusTicTacPanel bonusPanel = new BonusTicTacPanel(ticTac, panel);
+		
 		mainFrame.add(panel);
+		mainFrame.add(bonusPanel, BorderLayout.SOUTH);
 	}
 
 	public static void main(String[] args) {
